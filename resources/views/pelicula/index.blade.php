@@ -2,13 +2,13 @@
 <html lang="ca">
 <head>
     <meta charset="UTF-8">
-    <title>Biblioteca - Llistat</title>
+    <title>Filmoteca - Llistat</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="container mt-5">
 <h1 class="mb-4">Llistat de Peliculas</h1>
 <h2 class="mb-4">-asucilla-</h2>
-
+<a href="/pelicula/create" class="btn btn-success mb-3">Afegir un llibre nou</a>
 <table class="table table-striped table-hover">
     <thead class="table-dark">
     <tr>
@@ -20,13 +20,13 @@
     </tr>
     </thead>
     <tbody>
-    @forelse($llibres as $llibre)
+    @forelse($Pelicula as $Peliculas)
         <tr>
-            <td>{{ $llibre->titol }}</td>
-            <td>{{ $llibre->pais }}</td>
-            <td>{{ $llibre->año_estreno }}</td>
-            <td>{{ $llibre->nominaciones_oscar }}</td>
-            <td>{{ $llibre->oscar_ganados }}</td>
+            <td>{{ $Peliculas->titulo }}</td>
+            <td>{{ $Peliculas->pais }}</td>
+            <td>{{ $Peliculas->año_estreno }}</td>
+            <td>{{ $Peliculas->nominaciones_oscar }}</td>
+            <td>{{ $Peliculas->oscar_ganados }}</td>
 
         </tr>
     @empty

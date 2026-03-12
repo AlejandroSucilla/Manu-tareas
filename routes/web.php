@@ -1,7 +1,10 @@
 <?php
+use App\Http\Controllers\PeliculaControler;
 
-use Illuminate\Support\Facades\Route;
+Route::get('/mostrar', [PeliculaControler::class, 'index']);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Aquesta ruta serveix per MOSTRAR el formulari
+Route::get('/pelicula/create', [PeliculaControler::class, 'create']);
+
+// Aquesta ruta serveix per REBRE les dades del formulari
+Route::post('/pelicula/create', [PeliculaControler::class, 'store']);
