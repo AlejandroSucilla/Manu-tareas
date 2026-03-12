@@ -52,16 +52,11 @@ class PeliculaControler extends Controller
 
             // Guardem el nom del fitxer a la base de dades
             $nouPelicula->imatge = $nomImatge;
-
-            // 3. El mètode save() l'envia definitivament a la base de dades MySQL
-            $nouPelicula->save();
-
-            // 4. Finalment, tornem al llistat de llibres per veure que s'ha afegit correctament
-            return redirect('/mostrar');
-
-
         }
-
+        // 3. El mètode save() l'envia definitivament a la base de dades MySQL
+        $nouPelicula->save();
+        // 4. Finalment, tornem al llistat de llibres per veure que s'ha afegit correctament
+        return redirect('/mostrar');
 
     }
 }
