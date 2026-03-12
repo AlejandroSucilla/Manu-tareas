@@ -30,6 +30,9 @@
             <td>
                 <a href="/pelicula/{{ $Peliculas->id }}" class="btn btn-info btn-sm">Veure</a>
             </td>
+            <td>
+                <a href="/pelicula/{{ $Peliculas->id }}" class="btn btn-info btn-sm">Eliminar</a>
+            </td>
 
         </tr>
     @empty

@@ -25,7 +25,13 @@ class PeliculaControler extends Controller
     {
         // Busquem el llibre pel seu ID. Si no existeix, donarà un error 404.
         $pelicula = \App\Models\Pelicula::findOrFail($id);
+
         return view('pelicula.show', compact('pelicula'));
+    }
+    public function delete($id)
+    {
+        $pelicula = \App\Models\Pelicula::find($id)->delete();
+        return redirect('/mostrar');
     }
 
     public function store(\Illuminate\Http\Request $request)
