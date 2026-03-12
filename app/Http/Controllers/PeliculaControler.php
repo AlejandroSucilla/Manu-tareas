@@ -16,9 +16,12 @@ class PeliculaControler extends Controller
         // Enviem les dades a la vista (com el ModelAndView)
         return view('pelicula.index', ['Pelicula' => $totsPelicules]);
     }
-    public function create(){
+
+    public function create()
+    {
         return view('pelicula.create');
     }
+
     public function store(\Illuminate\Http\Request $request)
     {
         // 1. Creem un objecte nou del nostre Model (com una fila buida a la taula)
@@ -32,12 +35,25 @@ class PeliculaControler extends Controller
         $nouPelicula->nominaciones_oscar = $request->input('nominaciones_oscar');
         $nouPelicula->oscar_ganados = $request->input('oscar_ganados');
 
-        // 3. El mètode save() l'envia definitivament a la base de dades MySQL
-        $nouPelicula->save();
+        // GESTIÓ DE LA IMATGE
+        if ($request->hasFile('imatge')) {
+            // Guardem la imatge a la carpeta 'public/portades'
+            $fitxer = $request->file('imatge');
+            $nomImatge = time() . '_' . $fitxer->getClientOriginalName();
+            $fitxer->move(public_path('portades'), $nomImatge);
 
-        // 4. Finalment, tornem al llistat de llibres per veure que s'ha afegit correctament
-        return redirect('/mostrar');
+            // Guardem el nom del fitxer a la base de dades
+            $nouPelicula->imatge = $nomImatge;
+
+            // 3. El mètode save() l'envia definitivament a la base de dades MySQL
+            $nouPelicula->save();
+
+            // 4. Finalment, tornem al llistat de llibres per veure que s'ha afegit correctament
+            return redirect('/mostrar');
+
+
+        }
+
+
     }
-
-
 }
