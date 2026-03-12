@@ -34,6 +34,11 @@
         <label class="form-label">Oscars Ganados</label>
         <input type="text" name="oscar_ganados" class="form-control">
     </div>
+    <div class="mb-3">
+        <label class="form-label">Portada de la Pelicula</label>
+        <input type="file" name="imatge" class="form-control">
+    </div>
+
     <button type="submit" class="btn btn-primary">Guardar a la biblioteca</button>
 </form>
 </body>
