@@ -10,7 +10,7 @@
 <h1>Afegir una Pelicula</h1>
 <h2>--asucilla@institutmvm.cat-</h2>
 
-<form action="/pelicula/create" method="POST" class="mt-4 p-4 border rounded bg-light">
+<form action="/pelicula/create" method="POST" enctype="multipart/form-data" class="mt-4 p-4 border rounded bg-light">
     @csrf  <div class="mb-3">
         <label class="form-label">titulo</label>
         <input type="text" name="titulo" class="form-control">

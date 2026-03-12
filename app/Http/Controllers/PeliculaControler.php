@@ -24,11 +24,9 @@ class PeliculaControler extends Controller
     public function show($id)
     {
         // Busquem el llibre pel seu ID. Si no existeix, donarà un error 404.
-
         $pelicula = \App\Models\Pelicula::findOrFail($id);
         return view('pelicula.show', compact('pelicula'));
     }
-
 
     public function store(\Illuminate\Http\Request $request)
     {

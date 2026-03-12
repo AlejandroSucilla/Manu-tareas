@@ -27,6 +27,9 @@
             <td>{{ $Peliculas->año_estreno }}</td>
             <td>{{ $Peliculas->nominaciones_oscar }}</td>
             <td>{{ $Peliculas->oscar_ganados }}</td>
+            <td>
+                <a href="/pelicula/{{ $Peliculas->id }}" class="btn btn-info btn-sm">Veure</a>
+            </td>
 
         </tr>
     @empty

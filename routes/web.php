@@ -8,3 +8,5 @@ Route::get('/pelicula/create', [PeliculaControler::class, 'create']);
 
 // Aquesta ruta serveix per REBRE les dades del formulari
 Route::post('/pelicula/create', [PeliculaControler::class, 'store']);
+
+Route::get('/pelicula/{id}', [PeliculaControler::class, 'show']);
