@@ -11,4 +11,8 @@ Route::post('/pelicula/create', [PeliculaControler::class, 'store']);
 
 Route::get('/pelicula/{id}', [PeliculaControler::class, 'show']);
 
-Route::get('/pelicula/{id}', [PeliculaControler::class, 'delete']);
+Route::get('/pelicula/{id}/delete', [PeliculaControler::class, 'delete']);
+
+Route::post('/pelicula/update/{id}', [PeliculaControler::class, 'update']);
+
+Route::get('/pelicula/{id}/editar', [PeliculaControler::class, 'editar']);

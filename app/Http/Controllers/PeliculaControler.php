@@ -23,15 +23,41 @@ class PeliculaControler extends Controller
     }
     public function show($id)
     {
-        // Busquem el llibre pel seu ID. Si no existeix, donarà un error 404.
         $pelicula = \App\Models\Pelicula::findOrFail($id);
 
         return view('pelicula.show', compact('pelicula'));
     }
     public function delete($id)
     {
-        $pelicula = \App\Models\Pelicula::find($id)->delete();
+        $pelicula = \App\Models\Pelicula::findOrFail($id)->delete();
         return redirect('/mostrar');
+    }
+    public function editar($id)
+    {
+        $pelicula = \App\Models\Pelicula::findOrFail($id);
+        return view('pelicula.editar', ['pelicula' => $pelicula]);
+    }
+    public function update(Request $request, $id)
+    {
+        $pelicula = \App\Models\Pelicula::findOrFail($id);
+
+        $pelicula->titulo = $request->input('titulo');
+        $pelicula->pais = $request->input('pais');
+        $pelicula->año_estreno = $request->input('año_estreno');
+        $pelicula->nominaciones_oscar = $request->input('nominaciones_oscar');
+        $pelicula->oscar_ganados = $request->input('oscar_ganados');
+
+        if ($request->hasFile('imatge')) {
+            $fitxer = $request->file('imatge');
+            $nomImatge = time() . '_' . $fitxer->getClientOriginalName();
+            $fitxer->move(public_path('portades'), $nomImatge);
+            $pelicula->imatge = $nomImatge;
+        }
+
+        $pelicula->save();
+        return redirect('/mostrar'
+
+        )->with('success', 'Película actualizada');
     }
 
     public function store(\Illuminate\Http\Request $request)
@@ -40,7 +66,6 @@ class PeliculaControler extends Controller
         $nouPelicula = new \App\Models\Pelicula();
 
         // 2. Omplim cada camp amb el que l'usuari ha escrit al formulari.
-        // Fem servir $request->input('NOM_DEL_CAMP_HTML')
         $nouPelicula->titulo = $request->input('titulo');
         $nouPelicula->pais = $request->input('pais');
         $nouPelicula->año_estreno = $request->input('año_estreno');
