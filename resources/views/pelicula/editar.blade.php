@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ca">
 <head>
@@ -10,46 +9,38 @@
 <h1>Afegir una Pelicula</h1>
 <h2>--asucilla@institutmvm.cat-</h2>
 
-<form action="/pelicula/store" method="POST" enctype="multipart/form-data" class="mt-4 p-4 border rounded bg-light">
+<form action="/pelicula/update/{{ $pelicula->id }}" method="post" enctype="multipart/form-data" class="mt-4 p-4 border rounded bg-light">
     @csrf  <div class="mb-3">
         <label class="form-label">titulo</label>
-        <input type="text" name="titulo" class="form-control">
+        <label>Titulo</label><input type="text" name="titulo" value=" {{$pelicula->titulo}}" class="form-control">
     </div>
 
     <div class="mb-3">
         <label class="form-label">Pais</label>
-        <input type="text" name="pais" class="form-control">
-    </div>
-    <div class="mb-3">
-        <label class="form-label">Selecciona els autors:</label>
-        <select name="autors[]" class="form-select" multiple style="color: black">
-            @foreach($autors as $autor)
-                <option value="{{ $autor->id }}">{{ $autor->nombre }}</option>
-            @endforeach
-        </select>
-        <small class="text-muted">Mantingues premut Ctrl per seleccionar-ne més d'un.</small>
+        <input type="text" name="pais" value="{{ $pelicula->pais }}" class="form-control"><br/>
     </div>
 
     <div class="mb-3">
         <label class="form-label">año_estreno</label>
-        <input type="text" name="año_estreno" class="form-control">
+        <input type="text" name="año_estreno" value="{{ $pelicula->año_estreno }}" class="form-control">
     </div>
 
     <div class="mb-3">
         <label class="form-label">Nominaciones a Oscar</label>
-        <input type="text" name="nominaciones_oscar" class="form-control">
+        <input type="text" name="nominaciones_oscar" value="{{ $pelicula->nominaciones_oscar }}" class="form-control">
     </div>
     <div class="mb-3">
         <label class="form-label">Oscars Ganados</label>
-        <input type="text" name="oscar_ganados" class="form-control">
+        <input type="text" name="oscar_ganados" value="{{ $pelicula->oscar_ganados }}" class="form-control">
     </div>
     <div class="mb-3">
         <label class="form-label">Portada de la Pelicula</label>
-        <input type="file" name="imatge" class="form-control">
+        <img src="{{ asset('portades/' . $pelicula->imatge) }}" class="img-fluid rounded" style="width: 150px;height:150px;">
     </div>
 
     <button type="submit" class="btn btn-primary">Guardar a la biblioteca</button>
 </form>
 </body>
 </html>
+
 

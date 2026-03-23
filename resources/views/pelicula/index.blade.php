@@ -17,6 +17,7 @@
         <th>año_estreno</th>
         <th>nominaciones_oscar</th>
         <th>oscar_ganados</th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -29,15 +30,14 @@
             <td>{{ $Peliculas->oscar_ganados }}</td>
             <td>
                 <a href="/pelicula/{{ $Peliculas->id }}" class="btn btn-info btn-sm">Veure</a>
-            </td>
-            <td>
-                <a href="/pelicula/{{ $Peliculas->id }}" class="btn btn-info btn-sm">Eliminar</a>
+                <a href="/pelicula/{{ $Peliculas->id }}/delete" class="btn btn-info btn-sm">Eliminar</a>
+                <a href="/pelicula/{{ $Peliculas->id }}/editar" class="btn btn-info btn-sm">Editar</a>
             </td>
 
         </tr>
     @empty
         <tr>
-            <td colspan="4" class="text-center">No hi ha llibres a la biblioteca.</td>
+            <td colspan="4" class="text-center">No hi ha Peliculas a la Filmoteca.</td>
         </tr>
     @endforelse
     </tbody>

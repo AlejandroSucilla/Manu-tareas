@@ -10,6 +10,12 @@
         </div>
         <div class="col-md-8">
             <p><strong>pais:</strong> {{ $pelicula->pais }}</p>
+            <p><strong>Autors:</strong></p>
+            <ul>
+                @foreach($pelicula->autors as $autor)
+                    <li>{{ $autor->nombre }}</li>
+                @endforeach
+            </ul>
             <p><strong>año_estreno:</strong> {{ $pelicula->año_estreno }}</p>
             <p><strong>nominaciones_oscar:</strong> {{ $pelicula->nominaciones_oscar }} </p>
             <p><strong>oscar_ganados:</strong> {{ $pelicula->oscar_ganados }} </p>
