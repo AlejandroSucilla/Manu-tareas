@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Autor;
 use Illuminate\Http\Request;
+use PhpParser\Builder\Function_;
 
 class AutorController extends Controller
 {
@@ -46,5 +47,9 @@ class AutorController extends Controller
         $autor->delete();
 
         return redirect()->route('autor.index');
+    }
+    public function autorespeliculas() {
+        $autores = Autor::with('peliculas')->get();
+        return view('actores.autorespeliculas', compact('autores'));
     }
 }

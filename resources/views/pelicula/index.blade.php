@@ -8,8 +8,12 @@
 <body class="container mt-5">
 <h1 class="mb-4">Llistat de Peliculas</h1>
 <h2 class="mb-4">-asucilla-</h2>
-<a href="/pelicula/create" class="btn btn-success mb-3">Afegir un llibre nou</a>
+<a href="/pelicula/create" class="btn btn-success mb-3">Afegir una pelicula nova </a>
 <a href="/autores" class="btn btn-success mb-3">Ver los actores</a>
+
+<a href="/pelicula/peliculasautores" class="btn btn-success mb-3">Ver peliculas X autores </a>
+<a href="/autor/autorespeliculas" class="btn btn-success mb-3">Autores X Peliculas</a>
+
 <table class="table table-striped table-hover">
     <thead class="table-dark">
     <tr>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Autor;
 use App\Models\Pelicula;
 use Illuminate\Http\Request;
 
@@ -70,6 +71,11 @@ class PeliculaControler extends Controller
         return redirect('/mostrar');
     }
 
+    public function peliculasautores() {
+        $peliculas = Pelicula::with('autors')->get();
+        return view('pelicula.peliculasautores', compact('peliculas'));
+    }
+
     public function store(\Illuminate\Http\Request $request)
     {
         // 1. Creem un objecte nou del nostre Model (com una fila buida a la taula)
@@ -97,7 +103,6 @@ class PeliculaControler extends Controller
 
         // 2. Si l'usuari ha seleccionat autors, els "enganxem"
         if ($request->has('autors')) {
-            // attach() agafa l'array d'IDs d'autors i els posa a la taula pivot
             $nouPelicula->autors()->attach($request->input('autors'));
         }
 
