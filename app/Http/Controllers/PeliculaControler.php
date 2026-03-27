@@ -31,13 +31,17 @@ class PeliculaControler extends Controller
     }
     public function delete($id)
     {
-        $pelicula = \App\Models\Pelicula::findOrFail($id)->delete();
+        $pelicula = Pelicula::findOrFail($id);
+        $pelicula->autors()->detach();
+        $pelicula->delete();
+
         return redirect('/mostrar');
     }
     public function editar($id)
     {
         $pelicula = \App\Models\Pelicula::findOrFail($id);
-        return view('pelicula.editar', ['pelicula' => $pelicula]);
+        $autors = \App\Models\Autor::all();
+        return view('pelicula.editar', ['pelicula' => $pelicula, 'autors' => $autors]);
     }
     public function update(Request $request, $id)
     {
@@ -57,9 +61,13 @@ class PeliculaControler extends Controller
         }
 
         $pelicula->save();
-        return redirect('/mostrar'
 
-        )->with('success', 'Película actualizada');
+        if ($request->has('autors')) {
+            $pelicula->autors()->sync($request->input('autors'));
+        } else {
+            $pelicula->autors()->detach();
+        }
+        return redirect('/mostrar');
     }
 
     public function store(\Illuminate\Http\Request $request)
@@ -86,6 +94,7 @@ class PeliculaControler extends Controller
         }
         // 3. El mètode save() l'envia definitivament a la base de dades MySQL
         $nouPelicula->save();
+
         // 2. Si l'usuari ha seleccionat autors, els "enganxem"
         if ($request->has('autors')) {
             // attach() agafa l'array d'IDs d'autors i els posa a la taula pivot

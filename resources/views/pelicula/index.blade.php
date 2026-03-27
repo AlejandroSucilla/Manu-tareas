@@ -9,6 +9,7 @@
 <h1 class="mb-4">Llistat de Peliculas</h1>
 <h2 class="mb-4">-asucilla-</h2>
 <a href="/pelicula/create" class="btn btn-success mb-3">Afegir un llibre nou</a>
+<a href="/autores" class="btn btn-success mb-3">Ver los actores</a>
 <table class="table table-striped table-hover">
     <thead class="table-dark">
     <tr>

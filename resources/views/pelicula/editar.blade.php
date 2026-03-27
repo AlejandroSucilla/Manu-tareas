@@ -19,6 +19,17 @@
         <label class="form-label">Pais</label>
         <input type="text" name="pais" value="{{ $pelicula->pais }}" class="form-control"><br/>
     </div>
+    <div class="mb-3">
+        <label class="form-label">Actores</label>
+        <select name="autors[]" class="form-select" multiple>
+            @foreach($autors as $autor)
+                <option value="{{ $autor->id }}"
+                        @if($pelicula->autors->contains('id', $autor->id)) selected @endif>
+                    {{ $autor->nombre }}
+                </option>
+            @endforeach
+        </select>
+    </div>
 
     <div class="mb-3">
         <label class="form-label">año_estreno</label>
